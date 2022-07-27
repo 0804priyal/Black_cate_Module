@@ -1,0 +1,8 @@
+<?php
+
+$product = $block->getProduct();
+$pdfData = $this->helper('Chilliapple\Tabs\Helper\Data')->getWysiwygFilter()->filter($product->getData('product_downloads'));
+
+?>
+<?php echo $pdfData; ?>
+

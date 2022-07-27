@@ -1,0 +1,67 @@
+<?php
+$optionKey = $block->getData('key'); 
+$helper = $this->helper('Chilliapple\GoldBlocking\Helper\Data');
+$goldBlockProductId = $helper->getGoldBlockingProductId();
+$customBlockProductId = $helper->getCustomDieProductId();
+
+
+$goldBlockBuyRequest = $helper->getBlockBuyRequest($goldBlockProductId);
+$customDieRequest = $helper->getBlockBuyRequest($customBlockProductId);
+$_fileInfo = '';
+
+$goldProduct = $helper->loadProductById($goldBlockProductId);
+$customDieProduct = $helper->loadProductById($customBlockProductId);
+
+$mappedOptions = $helper->getGoldBlockProductCustomOptions($goldProduct,$customDieProduct);
+
+
+?>
+
+<?php        
+$optionId = $mappedOptions[$optionKey];
+if($goldBlockBuyRequest){
+    $_fileInfo = $goldBlockBuyRequest->getBuyRequest()->getData('options/' . $optionId); 
+}
+if($_fileInfo){
+    $_fileInfo = new \Magento\Framework\DataObject($_fileInfo);     
+} 
+
+$_fileName = 'options_' . $block->escapeHtmlAttr($optionId) . '_file'; 
+$_fieldNameAction = $_fileName . '_action'; 
+$_fieldValueAction = $_fileInfo ? 'save_old' : 'save_new'; 
+$_fileNamed = $_fileName . '_name';
+$addedPrice = $block->getData('class');  
+
+?>
+<div class="field file">  
+    <?php if ($_fileInfo) :?>
+        <div class="control">
+            <span class="<?= /* @noEscape */ $_fileNamed ?>"><?= $block->escapeHtml($_fileInfo->getTitle()) ?></span>
+            <a href="javascript:void(0)" class="label" id="change-<?= /* @noEscape */ $_fileName ?>" >
+                <?= $block->escapeHtml(__('Change')) ?>
+            </a>
+            
+            <input type="checkbox" data-bind="click: deleteExistingLogo" class="<?php echo $addedPrice; ?>" name="delete-<?= /* @noEscape */ $_fileName ?>" id="delete-<?= /* @noEscape */ $_fileName ?>" />
+            <span class="label"><?= $block->escapeHtml(__('Delete')) ?></span>
+            <input type="hidden" id="hidden_<?php echo $_fieldNameAction; ?>" value="" class="hidden_file <?php echo $addedPrice; ?>" />
+        </div>
+        <?php endif; ?>
+        <div class="control" id="input-box-<?= /* @noEscape */ $_fileName ?>"
+                data-mage-init='{"goldBlockOptionFile":{
+                    "fileName":"<?= /* @noEscape */ $_fileName ?>",
+                    "fileNamed":"<?= /* @noEscape */ $_fileNamed ?>",
+                    "fieldNameAction":"<?= /* @noEscape */ $_fieldNameAction ?>",
+                    "changeFileSelector":"#change-<?= /* @noEscape */ $_fileName ?>",
+                    "deleteFileSelector":"#delete-<?= /* @noEscape */ $_fileName ?>"}
+                }'
+                <?= $_fileInfo ? 'style="display:none"' : '' ?>>
+            <input type="file"
+                data-bind="event: { change: function() { logoUpload($element) } }"
+                name="<?= /* @noEscape */ $_fileName ?>"
+                id="<?= /* @noEscape */ $_fileName ?>"
+                accept=".jpg,.png,jpeg"
+                class="product-custom-option <?php echo $addedPrice; ?>"
+                <?= $_fileInfo ? 'disabled="disabled"' : '' ?> />
+            <input type="hidden" name="<?= /* @noEscape */ $_fieldNameAction ?>" value="<?= /* @noEscape */ $_fieldValueAction ?>" />        
+        </div>
+    </div>

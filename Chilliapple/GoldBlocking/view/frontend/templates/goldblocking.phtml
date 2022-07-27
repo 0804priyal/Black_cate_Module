@@ -1,0 +1,38 @@
+<?php
+$product  = $block->getProduct();
+
+?>
+<?php if($product->getData('music_folder_goldblocking')): ?>
+<div id="require-gold-blocking-container">
+    <div class="goldblock-container" data-bind="scope: 'goldblocking'">
+     
+        <div class="require-gold-blocking">
+            <input  data-bind="click: showpopup"  id="require-gold-blocking" name="require_gold_blocking" type="checkbox"  class="gold-blocking-checkbox" value="1"/>
+            <label  for="require-gold-blocking"><?php echo __('Require Gold-blocking?'); ?></label>
+
+           <!-- ko if: showEditGoldBlock -->
+            <div id="product-gold-blocking-subtotal"  title="Your Subtotal for Goldblocking automatically updates according to the number of folders you have selected on the product page.">
+                <span class="gold-blocking-price-label"><?= __('Subtotal:'); ?></span><span id="product-gold-blocking-price" class="gold-blocking-price" data-bind="text:
+                goldBlockSubTotalFormatted"></span>
+            </div>
+            <div id="product-gold-blocking-minimum" >
+                <span class="gold-blocking-price-label"><?= __('Minimum charge:'); ?></span><span class="gold-blocking-price">£10</span>
+            </div>
+            <div id="product-gold-blocking-edit" >
+                <a id="product-gold-blocking-edit-link" href="javascript:void(0);" data-bind="click: editGoldBlocking"><?= __('Edit Gold Blocking'); ?></a>
+            </div>
+              <!-- /ko -->
+            
+        </div>
+      
+        <div class="goldblocking-form-popup" style="display:none">
+            <div id="gold-blocking-popup" class="gold-blocking-popup">
+                <h1><?= __('If you have any questions regarding the gold-blocking, please call the sales team on 0800 072 7799 for assistance.'); ?></h1>
+                <p class="guide-info-top"><strong><?= __('Minimum charge £10.00 per order'); ?></strong>
+                <input type="hidden" name="gbs-total" data-bind="value: goldBlockSubTotal"/></p>
+           <?php echo $this->getChildHtml(); ?>
+            </div>
+        </div>
+    </div>
+</div>
+<?php endif; ?>

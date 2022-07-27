@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="chilliapple_store_flag" resource="default" engine="innodb" comment="Store Flag">
+        <column xsi:type="int" name="flag_id" unsigned="true" nullable="false" identity="true" comment="Flag ID"/>
+        <column xsi:type="varchar" name="flag_image" nullable="true" comment="Flag Image"/>
+        <column xsi:type="varchar" name="flag_url" nullable="false" comment="Flag Url"/>
+        <column xsi:type="timestamp" name="created_at" nullable="false" default="CURRENT_TIMESTAMP" comment="Sizeguide created At"/>
+        <column xsi:type="timestamp" name="updated_at" nullable="false" default="CURRENT_TIMESTAMP" comment="Sizeguide updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="flag_id"/>
+        </constraint>
+    </table>
+</schema>

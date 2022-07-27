@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="subscriptionnotify" translate="label" sortOrder="10">
+            <label>Subscription Notify</label>
+        </tab>
+        <section id="subscriptionnotify" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Subscription Notify</label>
+            <tab>subscriptionnotify</tab>
+            <resource>Chilliapple_SubscriptionNotify::subscriptionnotify</resource>
+            <group id="subscription" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Subscription Notification Options</label>
+                <field id="email_admin" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Email Admin on Subscribe</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Do you want an email notification when you get a subscriber?</comment>
+                </field>
+                <field id="notification_template" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Subscription Notification Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+                <field id="email_sender" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Notification Email Sender</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+                </field>
+                <field id="email_recipient" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Notification Email Recipient</label>
+                    <comment>What email address should the notifications go to?</comment>
+                     <validate>validate-email</validate>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

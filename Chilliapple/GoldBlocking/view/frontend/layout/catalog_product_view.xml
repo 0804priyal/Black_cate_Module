@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="head.components">
+            <block class="Chilliapple\GoldBlocking\Block\GoldBlocking"  name="goldblockingjs" template="Chilliapple_GoldBlocking::js/main.phtml"/>
+        </referenceBlock>
+        <referenceBlock name="product.info.form.options">
+            <block class="Chilliapple\GoldBlocking\Block\GoldBlocking" name="goldblocking" template="Chilliapple_GoldBlocking::goldblocking.phtml" before="product.info.options.wrapper.bottom" ifconfig="goldblocking/general/enable">
+                <block class="Chilliapple\GoldBlocking\Block\GoldBlocking" name="goldblocking_section_a" template="Chilliapple_GoldBlocking::goldblocking/section_a.phtml" />
+
+                <block class="Chilliapple\GoldBlocking\Block\GoldBlocking" name="goldblocking_section_b" template="Chilliapple_GoldBlocking::goldblocking/section_b.phtml" > 
+                    <block class="Magento\Catalog\Block\Product\View\Options\Type\File" name="goldproduct.info.options.file" template="Chilliapple_GoldBlocking::goldblocking/sections/file.phtml">
+                            <arguments>
+                                <argument name="key" xsi:type="const">\Chilliapple\GoldBlocking\Helper\Data::KEY_SECTION_B</argument>
+                                 <argument name="class" xsi:type="string">sectionB</argument>
+                            </arguments>
+                    </block>     
+                </block>
+                <block class="Chilliapple\GoldBlocking\Block\GoldBlocking" name="goldblocking_section_c" template="Chilliapple_GoldBlocking::goldblocking/section_c.phtml" >
+                 <block class="Magento\Catalog\Block\Product\View\Options\Type\File" name="customdie.info.options.file"  template="Chilliapple_GoldBlocking::goldblocking/sections/file.phtml">
+                        <arguments>
+                            <argument name="key" xsi:type="const">\Chilliapple\GoldBlocking\Helper\Data::KEY_SECTION_C_LOGO</argument>
+                            <argument name="class" xsi:type="string">sectionC</argument>
+                        </arguments>
+                 </block>
+                    
+                </block>
+                <block class="Chilliapple\GoldBlocking\Block\GoldBlocking" name="goldblocking_section_subtotal" template="Chilliapple_GoldBlocking::goldblocking/sections_subtotal.phtml" />
+            </block>
+        </referenceBlock>
+    </body>
+</page>
+

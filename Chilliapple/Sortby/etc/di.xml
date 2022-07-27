@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Catalog\Model\Config" type="Chilliapple\Sortby\Model\Rewrite\Catalog\Config" />
+    <preference for="Magento\Catalog\Block\Product\ListProduct" type="Chilliapple\Sortby\Block\Rewrite\Catalog\Product\ListProduct" />
+    <preference for="Magento\Catalog\Block\Product\ProductList\Toolbar" type="Chilliapple\Sortby\Block\Rewrite\Catalog\Product\ProductList\Toolbar" />
+    <preference for="Magento\Catalog\Model\Config\Source\ListSort" type="Chilliapple\Sortby\Model\Rewrite\Catalog\Config\Source\ListSort" />
+    <preference for="Magento\Catalog\Model\Category\Attribute\Source\Sortby" type="Chilliapple\Sortby\Model\Rewrite\Catalog\Category\Attribute\Source\Sortby" />
+</config>

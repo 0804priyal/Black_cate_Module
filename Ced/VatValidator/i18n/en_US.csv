@@ -1,0 +1,27 @@
+"* Required Fields","* Required Fields"
+"Contact Information","Contact Information"
+Company,Company
+"Phone Number","Phone Number"
+Fax,Fax
+Address,Address
+"Street Address","Street Address"
+"Street Address %1","Street Address %1"
+"VAT Number","VAT Number"
+"Validate vat","Validate vat"
+City,City
+State/Province,State/Province
+"Please select a region, state or province.","Please select a region, state or province."
+"Zip/Postal Code","Zip/Postal Code"
+Country,Country
+"Default Billing Address","Default Billing Address"
+"Use as my default billing address","Use as my default billing address"
+"Default Shipping Address","Default Shipping Address"
+"Use as my default shipping address","Use as my default shipping address"
+"Save Address","Save Address"
+"Go back","Go back"
+Loading...,Loading...
+"Tax/VAT number","Tax/VAT number"
+"Please enter a valid vat number with country code","Please enter a valid vat number with country code"
+"New Address","New Address"
+Shipping,Shipping
+Cancel,Cancel

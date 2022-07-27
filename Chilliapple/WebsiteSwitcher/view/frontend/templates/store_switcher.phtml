@@ -1,0 +1,41 @@
+<?php
+$websites = $block->getWebsites();
+$websiteId = $block->getCurrentWebsiteId();
+
+?>
+<?php if (count($block->getWebsites()) > 1): ?>
+    <div class="switcher website switcher-website" id="switcher-website">
+        <strong class="label switcher-label"><span><?php echo __('Select Website') ?></span></strong>
+
+        <div class="actions dropdown options switcher-options">
+            <?php foreach ($websites as $website): ?>
+                <?php if ($websiteId == $website->getId()): ?>
+                    <div class="action toggle switcher-trigger"
+                         role="button"
+                         tabindex="0"
+                         data-mage-init='{"dropdown":{}}'
+                         data-toggle="dropdown"
+                         data-trigger-keypress-button="true"
+                         id="switcher-website-trigger">
+                        <strong>
+                            <span class="<?php echo strtolower(str_replace(' ','-',$website->getName())); ?>-flag">
+                                <img src="<?= $block->getMediaUrl()?><?php echo strtolower(str_replace(' ','-',$website->getName())); ?>-flag.png" title="<?php echo $block->escapeHtml($website->getName())?>" alt="<?php echo strtolower(str_replace(' ','-',$website->getName())); ?>"><i class="fa fa-angle-down">&nbsp;</i>
+                            </span>
+                        </strong>
+                    </div>
+                <?php endif; ?>
+            <?php endforeach; ?>
+            <ul class="dropdown switcher-dropdown">
+                <?php foreach ($websites as $website): ?>
+                    <?php if (!($websiteId == $website->getId()) && $website->getCode()!='french'): ?>
+                        <li class="switcher-option <?php echo strtolower(str_replace(' ','-',$website->getName())); ?>-flag">
+                            <a href='<?php echo $website->getDefaultStore()->getCurrentUrl() ?>'>
+                                <img src="<?= $block->getMediaUrl()?><?php echo strtolower(str_replace(' ','-',$website->getName())); ?>-flag.png" title="<?php echo $block->escapeHtml($website->getName())?>" alt="<?php echo strtolower(str_replace(' ','-',$website->getName())); ?>">
+                            </a>
+                        </li>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    </div>
+<?php endif; ?>

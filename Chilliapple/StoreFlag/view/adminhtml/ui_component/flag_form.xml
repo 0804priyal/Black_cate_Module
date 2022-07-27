@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+     <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">flag_form.flag_data_source</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+
+    <settings>
+        <buttons>
+            <button name="back" class="Chilliapple\StoreFlag\Block\Adminhtml\StoreFlag\Edit\Back"/>
+            <button name="reset" class="Chilliapple\StoreFlag\Block\Adminhtml\StoreFlag\Edit\Reset"/>
+            <button name="delete" class="Chilliapple\StoreFlag\Block\Adminhtml\StoreFlag\Edit\Delete"/>
+            <button name="save_and_continue" class="Chilliapple\StoreFlag\Block\Adminhtml\StoreFlag\Edit\SaveAndContinue"/>
+            <button name="save" class="Chilliapple\StoreFlag\Block\Adminhtml\StoreFlag\Edit\SaveButton"/>
+        </buttons>
+        <namespace>flag_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>flag_form.flag_data_source</dep>
+        </deps>
+    </settings>
+<!-- 
+    <dataSource name="flag_data_source">
+       <argument name="dataProvider" xsi:type="configurableObject">
+           <argument name="class" xsi:type="string">Chilliapple\StoreFlag\Model\DataProvider</argument>
+           <argument name="name" xsi:type="string">flag_data_source</argument>
+           <argument name="primaryFieldName" xsi:type="string">id</argument>
+           <argument name="requestFieldName" xsi:type="string">id</argument>
+       </argument>
+       <settings>
+            <submitUrl path="storeflag/storeflag/save"/>
+        </settings>
+       <argument name="data" xsi:type="array">
+           <item name="js_config" xsi:type="array">
+               <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+           </item>
+       </argument>
+</dataSource> -->
+
+<dataSource name="flag_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="storeflag/storeflag/save"/>
+        </settings>
+        <dataProvider class="Chilliapple\StoreFlag\Ui\DataProvider\Form\StoreFlagDataProvider" name="flag_data_source">
+            <settings>
+                <requestFieldName>flag_id</requestFieldName>
+                <primaryFieldName>flag_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+
+    <fieldset name="general">
+        <settings>
+            <label translate="true">Store Flag</label>
+        </settings>
+         <field name="flag_image" formElement="fileUploader">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">storeflag</item>
+                </item>
+            </argument>
+            <settings>
+                <elementTmpl>ui/form/element/uploader/uploader</elementTmpl>
+                <dataType>string</dataType>
+                <label translate="true">Country Flag Image</label>
+                <visible>true</visible>
+                <required>true</required>
+                <notice>Allowed file types: jpeg, gif, png.</notice>
+            </settings>
+            <formElements>
+                <fileUploader>
+                    <settings>
+                        <required>true</required>                        
+                        <uploaderConfig>
+                            <param xsi:type="url" name="url" path="storeflag/storeflag_image/upload"/>
+                        </uploaderConfig>
+                        <previewTmpl>Chilliapple_StoreFlag/image-preview</previewTmpl>
+                    </settings>
+                </fileUploader>
+            </formElements>
+        </field> 
+
+        <field name="flag_url" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">URL</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="sortOrder" xsi:type="number">20</item>
+                </item>
+            </argument>
+        
+        </field>
+
+
+    </fieldset>
+
+</form>

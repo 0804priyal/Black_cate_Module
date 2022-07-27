@@ -1,0 +1,14 @@
+<div class="gold-blocking-option">
+    <div class="option-line gold-blocking-subtotal">
+        <span class="gold-blocking-price-label"><?= __('Subtotal for gold-blocking'); ?>:</span><span id="gold-blocking-price" class="gold-blocking-price" data-bind="text: goldBlockSubTotalFormatted"></span><br />
+        <input id="gold_blocking_subtotal" type="hidden" name="gold_blocking_subtotal" data-bind="value : goldBlockSubTotal" />
+        <input id="gold_blocking_dieprice" type="hidden" name="gold_blocking_dieprice" data-bind="value: priceForCustomDie"/>
+        <input id="updated_goldblock_dieprice" type="hidden" name="updated_goldblock_dieprice" />
+        <span><?php echo __('.......................................................'); ?></span><br>
+        <div class="gold-blocking-subtotal-note"><?= __('Your Subtotal for Goldblocking automatically updates according to the number of folders you have selected on the product page.'); ?></div>
+    </div>
+    <div class="option-line">
+        <h3><?= __('If we have any queries about your gold-blocking order, a member of the Black Cat team will give you a call (your telephone number is entered at the checkout). If you have any questions, please call the sales team on 0800 072 7799 for assistance.  Please use the box below to make any notes or comments:'); ?></h3>
+        <textarea id="gold-blocking-note" class="gold-blocking-note" rows="6" name="gold_blocking_note" data-bind="value: getValue($element)"></textarea>
+    </div>
+</div>

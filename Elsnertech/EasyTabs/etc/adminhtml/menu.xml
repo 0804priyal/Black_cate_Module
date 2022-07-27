@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Elsnertech_EasyTabs::head" title="Elsner EasyTabs"
+             module="Elsnertech_EasyTabs" resource="Elsnertech_EasyTabs::easytabs"
+             translate="title" sortOrder="20" />
+
+        <add id="Elsnertech_EasyTabs::easytabs" title="General"
+             module="Elsnertech_EasyTabs" resource="Elsnertech_EasyTabs::easytabs"
+             translate="title" sortOrder="10" parent="Elsnertech_EasyTabs::head" action="adminhtml/system_config/edit/section/custom_tab_general" />
+
+        <add id="Elsnertech_EasyTabs::overview" title="Tab List"
+             module="Elsnertech_EasyTabs" resource="Elsnertech_EasyTabs::easytabs"
+             translate="title" sortOrder="20" parent="Elsnertech_EasyTabs::head" action="tab/tab" />
+    </menu>
+</config>

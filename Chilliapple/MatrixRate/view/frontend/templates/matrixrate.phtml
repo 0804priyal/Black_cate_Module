@@ -1,0 +1,9 @@
+<?php
+$helper = $this->helper('Chilliapple\MatrixRate\Helper\Data');
+$price = $helper->getDeliveryFrom();
+$formattedPrice = $helper->getFormattedPrice($price);
+
+if($price > 0){
+echo '<p class="product-delivery">' . __('Delivery from:') . ' ' .$formattedPrice . '<span> ' . __('+ VAT') . '</span></p>';
+}
+?>

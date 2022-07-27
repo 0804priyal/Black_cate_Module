@@ -1,0 +1,44 @@
+<div class="gold-blocking-option">
+    <strong class="section-title">B. Instrument or voice - upper right corner or lower right corner</strong><br />
+    Limit 21 characters.  One line only<br />
+    <strong>£0.85 per line per folder</strong><br />
+    Please attach your list of instruments or voices, as a Word Document:
+    
+    <?= $block->getChildHtml(); ?>
+
+    <?php /*<div class="option-line">
+        <input id="sectionB_file_action" type="hidden" name="sectionB[file_action]" value="new" />
+        <input id="sectionB_file_old_name" type="hidden" name="sectionB[file_old_name]" />
+        <span id="sectionB_file_old" style="display:none;">sectionB_oldfile.jpg</span>
+        <a id="sectionB_file_change" href="#" style="display:none;"><?= __('Change'); ?></a>
+        <label id="sectionB_file_delete_label" style="display:none;">
+            <input id="sectionB_file_delete" type="checkbox" /> Delete
+        </label>
+        <p> <input id="sectionB_file" type="file" name="sectionB[file]" />
+        </p>
+        <p> <a id="sectionB_file_remove" href="#" style="display:none;" >Remove</a>
+        </p>
+    </div> */?>
+    <p class="guide-info"><strong><?= __('Important:'); ?></strong> <?= __('Please select whether you require your wording "ALL CAPITALS" or in “Upper and Lower Case”')?></p>
+    <div class="option-line character-case">
+			<span class="option-radio-left">
+				<input id="sectionB_letterCase_allCapitals" name="sectionB[letterCase]" type="radio" value="1" data-bind="attr: { checked : setSelected($element,'sectionB') }" />
+				<label for="sectionB_letterCase_allCapitals"><?= __('ALL CAPITALS'); ?></label>
+			</span>
+        <span class="option-radio">
+				<input id="sectionB_letterCase_upperAndLower" name="sectionB[letterCase]" type="radio"  value="2" data-bind="attr: { checked : setSelected($element,'sectionB') }" />
+				<label for="sectionB_letterCase_upperAndLower"><?= __('Upper and Lower Case'); ?></label>
+			</span>
+    </div>
+    <p class="guide-info"><strong><?= __('Position:'); ?></strong></p>
+    <div class="option-line character-case">
+			<span class="option-radio-left">
+				<input id="sectionB_position_upperRight" name="sectionB[position]" type="radio" value="1" data-bind="attr: { checked : setSelected($element,'sectionB') }" />
+				<label for="sectionB_position_upperRight"><?= __('Upper right corner'); ?></label>
+			</span>
+        <span class="option-radio">
+				<input id="sectionB_position_lowerRight" name="sectionB[position]" type="radio" checked="checked" value="2" data-bind="attr: { checked : setSelected($element,'sectionB') }" />
+				<label for="sectionB_position_lowerRight" ><?= __('Lower right corner'); ?></label>
+			</span>
+    </div>
+</div>

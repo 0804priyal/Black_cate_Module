@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<body>
+		<referenceBlock name="product.info.details">
+			<block class="Magento\Catalog\Block\Product\View" name="video.tab" template="Chilliapple_Tabs::video_tab.phtml" group="detailed_info" >
+				<arguments>
+					<argument translate="true" name="title" xsi:type="string">Video(s)</argument>
+					<argument name="sort_order" xsi:type="string">40</argument>
+				</arguments>
+			</block>
+			<block class="Magento\Catalog\Block\Product\View" name="download.tab" template="Chilliapple_Tabs::download_tab.phtml" group="detailed_info" >
+				<arguments>
+					<argument translate="true" name="title" xsi:type="string">Downloads</argument>
+					<argument name="sort_order" xsi:type="string">50</argument>
+				</arguments>
+			</block>
+		</referenceBlock>
+	</body>
+</page>

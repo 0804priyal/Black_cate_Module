@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+   <event name="checkout_cart_add_product_complete">
+        <observer name="add_gold_blocking" instance="Chilliapple\GoldBlocking\Model\AddGoldBlockingObserver" />
+    </event>
+    <event name="checkout_cart_update_item_complete">
+        <observer name="update_gold_blocking" instance="Chilliapple\GoldBlocking\Model\UpdateGoldBlockingObserver" />
+    </event>
+
+    <event name="checkout_cart_product_add_after">
+        <observer name="goldblock_final_price" instance="Chilliapple\GoldBlocking\Model\GoldBlockFinalPrice" />
+    </event>
+
+    
+</config>

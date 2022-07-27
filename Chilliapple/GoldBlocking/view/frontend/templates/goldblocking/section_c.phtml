@@ -1,0 +1,44 @@
+<?php
+$quote = $block->getDataFromQuote();
+$checked = '';
+if(!empty($quote['sectionC'])){
+    $checked = "checked='checked'";
+}
+?>
+<div class="gold-blocking-option">
+    <strong class="section-title"><?= __('C. Logo or crest - slightly above centre'); ?></strong><br />
+    <?= __('£80.00 per logo or crest for manufacture of custom die*'); ?><br />
+    <strong><?= __('plus £0.75 per impression per folder'); ?></strong>
+    <?= $block->getChildHtml(); ?>
+
+   <?php /* <div class="option-line">
+        <input id="sectionC_file_action" type="hidden" name="sectionC[file_action]" value="new" />
+        <input id="sectionC_file_old_name" type="hidden" name="sectionC[file_old_name]" />
+        <span id="sectionC_file_old" style="display:none;">sectionC_oldfile.jpg</span>
+        <a id="sectionC_file_change" href="#" style="display:none;">Change</a>
+        <label id="sectionC_file_delete_label" style="display:none;">
+            <input id="sectionC_file_delete" type="checkbox" /> Delete
+        </label>
+        <p>
+            <input id="sectionC_file" type="file" name="sectionC[file]" />
+        </p>
+        <p>
+            <a id="sectionC_file_remove" href="#" style="display:none;" >Remove</a>
+
+        </p>
+        
+    </div>*/ ?>
+    <div class="option-line"><?= __('*Please supply artwork in high-res pdf or jpeg, as clear as possible, in black and white (no shades of grey).  ')?>
+    <b><?= __('If we have any concerns about the format or resolution of your artwork, a member of the Black Cat team will give you a call.'); ?></b><br />
+        <?= __('Note: the die becomes yours, but we store it for you for future use.'); ?>
+    </div>
+
+    <div class="option-line character-case">
+			<span class="option-radio artwork-checkbox">
+				<input id="sectionC_alreadyHaveLogo" name="sectionC[alreadyHaveLogo]" type="checkbox" value="1" <?php echo $checked ?>  data-bind="click: alreadyHaveLogoSection"/>
+				<label for="sectionC_alreadyHaveLogo">
+                <?= __('Please tick this box if we already have your artwork on file (i.e. we have created a die for your school or company in the past)'); ?>
+                </label>
+			</span>
+    </div>
+</div>

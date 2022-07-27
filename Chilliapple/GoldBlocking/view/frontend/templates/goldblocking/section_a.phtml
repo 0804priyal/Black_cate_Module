@@ -1,0 +1,25 @@
+<div class="gold-blocking-option">
+    <strong class="section-title"><?= __('A. Name of group, school or organisation - slightly above centre'); ?></strong><br />
+    <?= __('Limit 3 lines and 21 characters per line'); ?><br />
+    <strong><?= __('£0.75 per line per folder'); ?></strong>
+    <div class="option-line">
+        <input class="option-input" name="sectionA[line1]" type="text" id="sectionA_line1" data-bind="event: { blur: updateSubtotalSecA }"  maxlength="21" />
+    </div>
+    <div class="option-line">
+        <input class="option-input" type="text"  name="sectionA[line2]" id="sectionA_line2" data-bind="event: { blur: updateSubtotalSecA }"  maxlength="21" />
+    </div>
+    <div class="option-line">
+        <input class="option-input" type="text" name="sectionA[line3]" id="sectionA_line3" data-bind="event: { blur: updateSubtotalSecA }"  maxlength="21" />
+    </div>
+    <p class="guide-info"><strong><?= __('Important:'); ?></strong><?= __('Please select whether you require your wording "ALL CAPITALS" or in "Upper and Lower Case".'); ?></p>
+    <div class="option-line character-case">
+			<span class="option-radio-left">
+				<input id="sectionA_letterCase_allCapitals" data-bind="attr: { checked : setSelected($element,'sectionA') }" name="sectionA[letterCase]" type="radio" value="1" />
+				<label for="sectionA_letterCase_allCapitals"><?= __('ALL CAPITALS'); ?></label>
+			</span>
+        <span class="option-radio">
+				<input id="sectionA_letterCase_upperAndLower" name="sectionA[letterCase]" type="radio" checked="checked"  data-bind="attr: { checked : setSelected($element,'sectionA') }" value="2" />
+				<label for="sectionA_letterCase_upperAndLower"><?= __('Upper and Lower Case'); ?></label>
+			</span>
+    </div>
+</div>

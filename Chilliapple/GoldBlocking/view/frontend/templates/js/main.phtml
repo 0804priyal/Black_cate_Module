@@ -1,0 +1,21 @@
+<?php
+       $quote = $block->getDataFromQuote() ? $block->getDataFromQuote() : '[]';
+    
+    $jsonHelper = $this->helper('\Magento\Framework\Json\Helper\Data');
+    
+?>
+<script type="text/x-magento-init">
+    {
+        "#require-gold-blocking-container": {
+            "Magento_Ui/js/core/app": {
+               "components": {
+                    "goldblocking": {
+                        "component": "Chilliapple_GoldBlocking/js/goldblocking",
+                        "existingQuote": <?php echo $quote; ?>
+                    }
+                }
+
+            }
+        }
+    }
+</script>

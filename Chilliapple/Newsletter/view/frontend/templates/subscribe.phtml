@@ -1,0 +1,60 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var \Magento\Newsletter\Block\Subscribe $block */
+
+?>
+<?php 
+    $config = $this->helper('Chilliapple\Newsletter\Helper\Data')->getConfig('categorynewsletter/general/oid');
+    $config_news = $this->helper('Chilliapple\Newsletter\Helper\Data')->getConfig('categorynewsletter/general/bcm_uk_news');
+    $config_customer = $this->helper('Chilliapple\Newsletter\Helper\Data')->getConfig('categorynewsletter/general/customer');
+    $config_form = $this->helper('Chilliapple\Newsletter\Helper\Data')->getConfig('categorynewsletter/general/signup_form');
+?>
+
+<div class="block newsletter">
+    <div class="title"><strong><?= $block->escapeHtml(__('EMAIL NEWS')) ?></strong></div>
+    <div class="content">
+        <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('category_newsletter_img')->toHtml();?>
+        <form class="newsletterSignupForm"
+            novalidate
+            action="https://www.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8"
+            method="post"
+            data-mage-init='{"validation": {"errorClass": "mage-error"}}'
+            id="newsletter-validate-detail">
+            <input type=hidden name="oid" value="<?php echo $config ?>">
+            <input type=hidden name="retURL" value="<?php echo $block->getUrl('thank-you'); ?>">
+            <input type=hidden name="00N20000002ghL5"  value="<?php echo $config_news ?>" />
+            <input type=hidden name="00N20000003ebSg"  value="<?php echo $config_customer ?>" />
+            <input type=hidden name="00N20000009IZLc"  value="<?php echo $config_form ?>" />
+            <div class="field newsletter">
+                <div class="control">
+                    <label for="newsletter">
+                        <span class="label">
+                            <?= $block->escapeHtml(__('Sign Up for Our Newsletter:')) ?>
+                        </span>
+                        <input name="email" type="email" id="newsletter"
+                               placeholder="<?= $block->escapeHtml(__('Enter your email address')) ?>"
+                               data-mage-init='{"mage/trim-input":{}}'
+                               data-validate="{required:true, 'validate-email':true}"
+                        />
+                    </label>
+                </div>
+            </div>
+
+            <div class="actions">
+                <button class="action subscribe primary"
+                        title="<?= $block->escapeHtmlAttr(__('Subscribe')) ?>"
+                        type="submit"
+                        aria-label="Subscribe">
+                    <span><?= $block->escapeHtml(__('Subscribe')) ?></span>
+                </button>
+            </div>
+        </form>
+        <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('category_newsletter_content')->toHtml();?>
+    </div>
+</div>

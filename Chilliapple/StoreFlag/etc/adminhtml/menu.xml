@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Chilliapple_StoreFlag::storeflag" title="Flag" module="Chilliapple_StoreFlag" sortOrder="20" resource="Chilliapple_StoreFlag::storeflag"/>
+        <add id="Chilliapple_StoreFlag::storeflag_storeflag" title="Store Flag" module="Chilliapple_StoreFlag" sortOrder="10" action="storeflag/storeflag/index" resource="Chilliapple_StoreFlag::storeflag_storeflag" parent="Chilliapple_StoreFlag::storeflag"/>
+    </menu>
+</config>

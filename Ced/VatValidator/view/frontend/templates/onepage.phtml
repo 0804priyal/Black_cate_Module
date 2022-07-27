@@ -1,0 +1,181 @@
+<?php
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * https://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_VatValidator
+ * @author      CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright   Copyright CedCommerce (https://cedcommerce.com/)
+ * @license     https://cedcommerce.com/license-agreement.txt
+ */
+
+// @codingStandardsIgnoreFile
+?>
+<div id="checkout" data-bind="scope:'checkout'" class="checkout-container">
+    <div id="checkout-loader" data-role="checkout-loader" class="loading-mask" data-mage-init='{"checkoutLoader": {}}'>
+        <div class="loader">
+            <img src="<?php /* @escapeNotVerified */ echo $block->getViewFileUrl('images/loader-1.gif'); ?>"
+                 alt="<?php /* @escapeNotVerified */ echo __('Loading...'); ?>"
+                 style="position: absolute;">
+        </div>
+    </div>
+    <!-- ko template: getTemplate() --><!-- /ko -->
+    <script type="text/x-magento-init">
+        {
+            "#checkout": {
+                "Magento_Ui/js/core/app": <?php /* @escapeNotVerified */ echo $block->getJsLayout();?>
+            }
+        }
+    </script>
+    <script>
+        window.checkoutConfig = <?php /* @escapeNotVerified */ echo \Zend_Json::encode($block->getCheckoutConfig()); ?>;
+        // Create aliases for customer.js model from customer module
+        window.isCustomerLoggedIn = window.checkoutConfig.isCustomerLoggedIn;
+        window.customerData = window.checkoutConfig.customerData;
+    </script>
+    <script>
+        require([
+            'mage/url',
+            'Magento_Ui/js/block-loader'
+        ], function(url, blockLoader) {
+            blockLoader("<?php /* @escapeNotVerified */ echo $block->getViewFileUrl('images/loader-1.gif'); ?>");
+            return url.setBaseUrl('<?php /* @escapeNotVerified */ echo $block->getBaseUrl();?>');
+        })
+    </script>
+    <script>
+    require(["jquery"], function ($) {
+
+  	  checkContainer();
+
+
+  	});
+    function fun()
+    {
+    	require(["jquery"], function ($) {
+    		  var validate = 0;
+              var vat =  $('input[name="vat_id"]').val();
+
+              $('*[name*="vat_id"]:visible').each(function() {
+            	   if((this.value) != "undefined")
+            	   {
+            		   vat = (this.value);
+                   }
+            	});
+              $('*[name*="country_id"]:visible').each(function() {
+           	   if((this.value) != "undefined")
+           	   {
+           	    	country = (this.value);
+                }
+           	});
+             
+             
+              if(country.length === 0)
+  			  {
+  				alert("<?php echo __('Please Select Country')?>");
+  				return false;
+  			  }
+                  $.ajax({
+                  method: 'POST',
+                  async: false,
+                  url: '<?php echo $block->getUrl('vatvalidator/address/vat')?>',
+                  data:{'vat' : vat,'country':country },
+              }).done(function (response) {
+                  if($('#vat_id-error').length){
+                      $('#vat_id-error').remove();
+                  }
+                  if($('.vat_id-notification').length){
+                      $('.vat_id-notification').remove();
+                  }
+                  if(response == 'done'){
+                	
+                     if($('.vat_id-notification').is(':visible'))
+                     {
+                    	 $('.vat_id-notification').remove();
+                     }
+                   
+                      $('.validate-button:visible').after('<div class="vat_id-notification" style="color:green">Vat Number is Valid</div>');
+                  }else{
+                	  if($('.vat_id-notification').is(':visible'))
+                      {
+                     	 $('.vat_id-notification').remove();
+                       }
+
+                      $('.validate-button:visible').after('<div class="vat_id-notification" style="color:red">Please enter a valid vat number and select a valid country</div>');
+                  }
+              });
+             
+              
+    		
+    	});
+        }
+  	function checkContainer () {
+  		require(["jquery"], function ($) {
+  		
+  	
+  	  if(($('input[name="vat_id"]').is(':visible')) && (!$('input[name="validate_vat"]').is(':visible'))){
+  		 $('*[name*="validate_vat"]:visible').each(function() {
+              this.remove(); 
+  		});
+  		 if($('#validate-button').is(':visible'))
+			 {
+				$('#validate-button').remove();
+  			 }
+  			$('input[name="vat_id"]:visible').after('<button class="validate-button" id="validate-button" name="validate_vat" style="background: #1979c3" onclick="fun();" type="button">Validate VAT </button>');
+  	  	
+  	  
+  	  } else { 
+  		
+  	    setTimeout(checkContainer, 1000); 
+  	   
+  	}
+  });
+  		}
+  	 require(["jquery"], function ($) {
+  		if(!$("#billing-new-address-form").is(':visible'))
+  		{
+  			setTimeout(test, 1000); 
+		}
+  	});
+
+  	 function test()
+     {
+  		 require(["jquery"], function ($) {
+  			if($("#billing-new-address-form").is(':visible'))
+  	  		{
+  				 if(($('input[name="vat_id"]').is(':visible')) && (!$('input[name="validate_vat"]').is(':visible')))
+  	  				 {
+  					 $('*[name*="validate_vat"]:visible').each(function() {
+
+  			  			this.remove(); 
+  			  		});
+  	  				 if($('#validate-button').is(':visible'))
+  	  				 {
+  	  					$('#validate-button').remove();
+  	  	  			 }
+  					
+  				$('input[name="vat_id"]:visible').after('<button class="validate-button" id="validate-button" name="validate_vat" style="background: #1979c3" onclick="fun();" type="button">Validate VAT </button>');
+
+  				 }
+  				 else{
+  	  			   
+  	  			   setTimeout(test, 1000); 
+  	  	  		 }
+  	  		}
+
+  	  	 else{
+  			   
+  			   setTimeout(test, 1000); 
+  	  		 }
+  		});
+     }
+ 	
+    </script>
+
+</div>

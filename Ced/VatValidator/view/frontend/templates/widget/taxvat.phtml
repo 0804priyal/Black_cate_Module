@@ -1,0 +1,118 @@
+<?php
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * https://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_VatValidator
+ * @author      CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright   Copyright CedCommerce (https://cedcommerce.com/)
+ * @license     https://cedcommerce.com/license-agreement.txt
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<div class="field taxvat<?php if ($block->isRequired()) echo ' required'; ?>">
+    <label class="label" for="<?php /* @escapeNotVerified */ echo $block->getFieldId('taxvat')?>"><span><?php /* @escapeNotVerified */ echo __('Tax/VAT number') ?></span></label>
+    <div class="control">
+        <input type="text" id="<?php /* @escapeNotVerified */ echo $block->getFieldId('taxvat')?>" name="<?php /* @escapeNotVerified */ echo $block->getFieldName('taxvat')?>" value="<?php echo $block->escapeHtml($block->getTaxvat()) ?>" title="<?php /* @escapeNotVerified */ echo __('Tax/VAT number') ?>" class="input-text validate-vat<?php /* @escapeNotVerified */ echo $this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('taxvat') ?>" <?php /* @escapeNotVerified */ echo $block->getFieldParams() ?> <?php if ($block->isRequired()) echo ' data-validate="{required:true , \'validate-vat\':true}"' ?>>
+        <button id="validate-button" type="button" class="btn btn-primary" style="background: #1979c3 none repeat scroll 0 0;">
+            <span class="bold"><?php  echo __('Validate vat');?></span>
+        </button>
+    </div>
+
+    <script type="text/javascript">
+		require([
+		'jquery', 
+		'jquery/ui', 
+		'jquery/validate', 
+		'mage/translate' 
+		], function($){
+		$.validator.addMethod(
+		'validate-vat', function (value) {
+            var validate = false;
+            var val =  $('#taxvat').val();
+			if(val.length === 0)
+			{
+				 return true;
+			}
+			else{
+			var url = '<?php echo $block->getUrl('vatvalidator/address/vat')?>'
+            var country =  $('#country').val();
+				$.ajax({
+                method: 'POST',
+                async: false,
+                url: url,
+                data:{'vat' : value, 'country' : country },
+            }).done(function (response) {
+                if($('#vat_id-error').length){
+                    $('#vat_id-error').remove();
+                }
+                if($('.vat_id-notification').length){
+                    $('.vat_id-notification').remove();
+                }
+            	if(response == 'done'){
+            		validate = true;
+            	}else{
+                    validate = false;
+                }
+            });
+			}
+            $('.taxvat-notification').remove();
+            if(validate){
+                return true;
+            }else{
+                return false;
+            }
+		}, $.mage.__('Please enter a valid vat number and select a valid country'));
+		 
+           
+        $('#validate-button').click(function(e){
+            var validate = 0;
+            var vat =  $('#taxvat').val();
+            var country =  $('#country').val();
+           
+                $.ajax({
+                method: 'POST',
+                async: false,
+                url: '<?php echo $block->getUrl('vatvalidator/address/vat')?>',
+                data:{'vat' : vat,'country' : country },
+            }).done(function (response) {
+                if($('#vat_id-error').length){
+                    $('#vat_id-error').remove();
+                }
+                if($('.vat_id-notification').length){
+                    $('.vat_id-notification').remove();
+                }
+                if(response == 'done'){
+                    validate = true;
+                }else{
+                    validate = false;
+                }
+            });
+            $('.taxvat-notification').remove();
+             if(validate){
+                $('#taxvat-error').remove();
+                $('<div class="taxvat-notification" style="color:green">Vat Number is Valid</div>').insertAfter(this);
+            }else{
+                 $('#taxvat-error').remove();
+                 $('<div class="taxvat-notification" style="color:red">Please enter a valid vat number and select a valid country</div>').insertAfter(this);
+            }
+        });
+           
+        
+
+		});
+
+
+
+</script>
+
+</div>
